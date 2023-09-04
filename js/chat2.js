@@ -1,34 +1,29 @@
+var user_name = "";
+const button=document.getElementById("name_button");
+const snd_button = document.getElementById("send_button");
 
-get()
-setInterval(get, 2000)
+snd_button.addEventListener("click", SendMessage);
+button.addEventListener("click", AcceptName);
 
-function send() {
-    var message = document.getElementById('name', 'message').value;
-    (async () => {
-            var response = await fetch('chat.php', {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `name=${message}`
-            });
-            var answer = await response.json();
-            if (answer.status === "ok") document.getElementById('text').value = "";
-            if (answer.status === "error") document.getElementById('text').value = answer.error;
-            }
-        )();
-}
-
-function get() {
-    (async () => {
-                var response = await fetch('chat.php');
-                var answer = await response.json();
-                let str = '';
-                for (i in answer.messages) {
-                str = str + `<div class='name','message'>${answer.messages[i].message}</div>`;
-                 }
-            document.getElementById('messages_container').innerHTML = str;
-            }
-        )();
+function AcceptName() {
+    name_input = document.getElementById("name");
+    user_name=name_input.value;
     
 }
+
+function SendMessage () {
+    message = document.getElementById("message").value;
+    name_message = user_name + ": " + message;
+    console.log(name_message);
+    (async () => {
+                var response = await fetch('chat.php?message=' + name_message);
+                var answer = await response.text();
+                document.getElementById('message').value = '';
+            }
+        )();
+        
+    chat_area.value=name_message + '\r\n' + chat_area.value;
+    chat_area=document.getElementById("chat_area");
+
+    
+    }
