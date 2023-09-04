@@ -33,7 +33,6 @@
 
 
 
-<!-- Питон не пока не заработал-->
 	<div class="m_container">
 		<div class="py-5 text-center">
 			<h2>Отзывы</h2>
@@ -45,27 +44,31 @@
 				<h3>Форма сообщений</h3>
 				<form id="messForm">
 					<label for="name">Имя</label>
-					<input type="text" name="pname_input" id="name" placeholder="Введите имя" class="form-control">
+					<input type="text" name="name" id="name" placeholder="Введите имя" class="form-control">
+					<button type="button" id="name_button" class="btn btn-danger">Подтвердить</button>
 					<br>
 					<label for="message">Сообщение</label>
-					<textarea name="message_input" id="message" class="form-control" placeholder="Введите сообщение"></textarea>
+					<input type="text" id="message" class="form-control" placeholder="Введите сообщение">
+					
 					<br>
 					
-					<button onclick="send()" class="btn btn-danger">Отправить</button>
+					<button type="button" id="send_button"  class="btn btn-danger">Отправить</button>
 				</form>
 			</div>
 			<div class="col-6">
 				<h3>Сообщения</h3>
 				
-				<div id="messages_container"></div>
+				<div id="messages">
+					<textarea id="chat_area" class="form-control"  readonly></textarea>
+				</div>
 			</div>
 		</div>
 	</div>
 
-  <script type="application/javascript" src="/js/chat2.js"></script>
+  <script  src="/js/chat2.js"></script>
 
 
-<!-- Не работающий js nod
+<!-- Не работающий эксперимент с js nod
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script>

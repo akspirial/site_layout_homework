@@ -5,7 +5,7 @@ if (isset($_POST['name', 'message']) && !empty($_POST['name', 'message'])) {
     $message = strip_tags($_POST['name', 'message']);
 
     $statement = $pdo->prepare(
-        'INSERT INTO messages_container (message) VALUES (?)'
+        'INSERT INTO chat_area (message) VALUES (?)'
     );
     $statement->execute([$message]);
 
@@ -18,7 +18,7 @@ if (isset($_POST['name', 'message']) && !empty($_POST['name', 'message'])) {
 }
 
 $statement = $pdo->prepare(
-    'SELECT * FROM messages_container ORDER BY id desc LIMIT 10;'
+    'SELECT * FROM chat_area ORDER BY id desc LIMIT 10;'
 );
 
 $statement->execute();
@@ -27,7 +27,7 @@ $messages = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 $result = [
     'status' => 'ok',
-    'messages_container' => $messages
+    'chat_area' => $messages
 ];
 
 echo json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
